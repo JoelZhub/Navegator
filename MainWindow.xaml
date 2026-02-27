@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Navegator"
         xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
         mc:Ignorable="d"
-        Title="Navegator" MaxHeight="1200" Background="White"  Width="1200" Icon="/img/edge.png"  >
+        Title="Navegator" KeyDown="Window_KeyDown" MaxHeight="1200" Background="White"  Width="1300" Icon="/img/edge.png"  >
 
 
     <ScrollViewer  VerticalScrollBarVisibility="Auto"  >
@@ -28,7 +28,7 @@
             <Border  BorderBrush="#000" Background="#1A1A29"   BorderThickness="0,0,0,0.2" MinHeight="80" VerticalAlignment="Top" Grid.ColumnSpan="2"  >
 
                 <StackPanel  Orientation="Horizontal"  MinHeight="80" MaxWidth="1200" HorizontalAlignment="Center"  VerticalAlignment="Top" >
-                    <StackPanel Background="Transparent"  Height="40" Width="150" Orientation="Horizontal"  >
+                    <StackPanel  Background="Transparent"  Height="40" Width="130" Orientation="Horizontal"  >
 
                         <Border
                         CornerRadius="4"
@@ -38,8 +38,8 @@
                         Height="20"
                         Margin="20,0,0,0" 
                         >
-                            <Button BorderThickness="0" Padding="2" Background="White" Height="20" Width="20" >
-                                <Image Opacity="0.3" Source="/img/arrow-l.png"  />
+                            <Button MouseEnter="Button_MouseEnter" BorderThickness="0" Tag="btnBefore" Click="Button_Click" Padding="2"  Background="White" Height="20" Width="20" >
+                                <Image VerticalAlignment="Center" HorizontalAlignment="Center"  Opacity="0.3" Source="/img/arrow-l.png"  />
                             </Button>
                         </Border>
 
@@ -51,7 +51,7 @@
                           Height="20"
                           Margin="20,0,0,0" 
                           >
-                            <Button BorderThickness="0" Padding="2" Background="White" Height="20" Width="20" >
+                            <Button MouseEnter="Button_MouseEnter" Tag="btnAfter" Click="Button_Click" BorderThickness="0" Padding="2" Background="White" Height="20" Width="20" >
                                 <Image  Opacity="0.3" Source="/img/arrow-r.png"  />
                             </Button>
                         </Border>
@@ -64,19 +64,31 @@
                           Height="20"
                           Margin="20,0,0,0" 
                           >
-                            <Button BorderThickness="0" Padding="2" Background="White" Height="20" Width="20"  >
+                            <Button Tag="btnRefresh" Click="Button_Click" BorderThickness="0" Padding="2" Background="White" Height="20" Width="20"  >
                                 <Image  Source="/img/refresh.png"  />
                             </Button>
                         </Border>
 
                     </StackPanel>
 
-                    <Border CornerRadius="2" Padding="5"  Margin="20,0,0,0"  BorderBrush="White" Background="#3F2F4F"  Height="40" Width="1000" VerticalAlignment="Center" HorizontalAlignment="Center" >
+                    <Border CornerRadius="2" Padding="5" Opacity="0.5"  Margin="20,0,0,0"  BorderBrush="White" Background="#3F2F4F"  Height="40" Width="1000" VerticalAlignment="Center" HorizontalAlignment="Center" >
                         <StackPanel Orientation="Horizontal"   >
                             <Image  Source="/img/search-icon.png" Height="20" Width="20" />
-                            <TextBox  KeyDown="TextBox_KeyDown"  GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"  Tag="searchUp" BorderThickness="0" HorizontalAlignment="Left" FontSize="14" Padding="10, 6" Background="Transparent" Foreground="White" FontWeight="Normal"  Height="35" Width="1000" Text="Buscar con google o introduzca la url" />
+                            <TextBox  KeyDown="TextBox_KeyDown"  GotFocus="TextBox_GotFocus"
+                                      LostFocus="TextBox_LostFocus"  Tag="searchUp" BorderThickness="0" HorizontalAlignment="Left" FontSize="14" Padding="10, 6" 
+                                      Background="Transparent" Foreground="White" FontWeight="Normal" 
+                                      Height="35" Width="900" Text="Buscar con google o introduzca la url" />
+                            
+                            <Border CornerRadius="10" Background="White" >
+                            <Button Click="Button_Click_Help" Cursor="Help" Background="Transparent" BorderBrush="Snow" BorderThickness="0" >
+                                <Image Source="/img/help.png"/>
+                            </Button>
+                            </Border>
                         </StackPanel>
+                           
                     </Border>
+                        
+         
 
                 </StackPanel>
             </Border>
@@ -85,7 +97,7 @@
 
             <!-- contenedor main principal-->
 
-            <StackPanel Name="main" ScrollViewer.CanContentScroll="True" Orientation="Vertical"  MinHeight="900"  MaxWidth="1000"
+            <StackPanel Visibility="Visible" Name="main" ScrollViewer.CanContentScroll="True" Orientation="Vertical"  MinHeight="900"  MaxWidth="1000"
                     Background="Transparent" HorizontalAlignment="Center" 
                     VerticalAlignment="Top" Margin="56,102,0,0" Grid.Column="1"  >
 
@@ -242,7 +254,84 @@
 
 
             <wv2:WebView2 Margin="0,75,0,0" Visibility="Hidden" Height="auto" x:Name="webView"/>
-            
+            <StackPanel Name="ayudaPage" Margin="0,100,0,0" Orientation="Vertical" HorizontalAlignment="Left"  Visibility="Hidden" VerticalAlignment="Top"  Background="Transparent" MaxWidth="1300" MinHeight="750" >
+                <TextBlock HorizontalAlignment="Left" Margin="20,0,0,0" TextWrapping="Wrap" Text="Consulta nuestros modulos de ayuda" Padding="4" Height="auto" Width="450" FontSize="20" FontWeight="Black" ></TextBlock>
+
+                <StackPanel Margin="20,20,0,20" HorizontalAlignment="Center" Width="auto" Height="auto" Orientation="Horizontal" >
+                    <Border 
+                         Margin="20,40,0,0"
+                        Background="white"
+                        BorderBrush="#000"
+                        BorderThickness="0.4"
+                        Padding="10"
+                        Width="400"
+                        Height="450"
+                        CornerRadius="10"
+                        >
+                        <StackPanel Orientation="Vertical"  >
+                        <TextBlock TextWrapping="Wrap" 
+                                   FontSize="20" FontWeight="Bold" Padding="4" 
+                                   Text="Realizar una búsqueda en el navegador" HorizontalAlignment="Center" />
+                            <Image Margin="0,10,0,10" Height="140" Width="140" Source="/img/search (1).png" />
+                            <TextBlock TextWrapping="Wrap" 
+                                    FontSize="14.5" LineHeight="23" FontWeight="Normal" Padding="6" 
+                                    Text="Para buscar información, selecciona cualquiera de los dos cuadros de búsqueda disponibles en la pantalla principal. Al hacer clic sobre el campo, el texto se limpiará automáticamente para que puedas escribir tu nueva consulta sin necesidad de borrar manualmente el contenido anterior.
+                                    Una vez escrita la búsqueda,         presiona la tecla Enter para visualizar los resultados."/>    
+                        </StackPanel>
+
+
+                    </Border>
+
+
+                    <Border 
+                         Margin="20,40,0,0"
+                        Background="white"
+                        BorderBrush="#000"
+                        BorderThickness="0.4"
+                        Padding="10"
+                        Width="400"
+                        Height="450"
+                        CornerRadius="10"
+                        >
+
+                        <StackPanel Orientation="Vertical"  >
+                            <TextBlock TextWrapping="Wrap" 
+           FontSize="20" FontWeight="Bold" Padding="4" 
+           Text="Abrir redes sociales desde el inicio" HorizontalAlignment="Center" />
+                            <Image Margin="0,10,0,10" Height="140" Width="140" Source="/img/social-media.png" />
+                            <TextBlock TextWrapping="Wrap" 
+            FontSize="14.5" LineHeight="23" FontWeight="Normal" Padding="6" 
+            Text="En la pantalla principal encontrarás accesos directos a YouTube, Facebook y Twitter. Solo debes hacer clic sobre el ícono correspondiente para abrir la plataforma seleccionada dentro del navegador."/>
+                        </StackPanel>
+
+                    </Border>
+                    <Border 
+        
+                        Margin="20,40,0,0"
+                         Background="white"
+                         BorderBrush="#000"
+                         BorderThickness="0.4"
+                         Padding="10"
+                         Width="400"
+                         Height="450"
+                         CornerRadius="10"
+                         >
+                        <StackPanel Orientation="Vertical"  >
+                            <TextBlock TextWrapping="Wrap" 
+FontSize="20" FontWeight="Bold" Padding="4" 
+Text="Visualizar noticias destacadas" HorizontalAlignment="Center" />
+                            <Image Margin="0,10,0,10" Height="140" Width="140" Source="/img/news.png" />
+                            <TextBlock TextWrapping="Wrap" 
+ FontSize="14.5" LineHeight="23" FontWeight="Normal" Padding="6" 
+ Text="El navegador muestra diferentes secciones de noticias en la página de inicio. Para leer una noticia, haz clic sobre el titular o la imagen correspondiente. El contenido se abrirá automáticamente en el área principal de navegación."/>
+                        </StackPanel>
+
+                    </Border>
+
+
+                </StackPanel>
+
+            </StackPanel>
         </Grid>
     </ScrollViewer>
 </Window>

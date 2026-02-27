@@ -13,13 +13,18 @@
     <None Remove="img\arrow-r.png" />
     <None Remove="img\edge.png" />
     <None Remove="img\facebook.png" />
+    <None Remove="img\help.png" />
     <None Remove="img\ia.png" />
+    <None Remove="img\landing-page.png" />
+    <None Remove="img\news.png" />
     <None Remove="img\noticia2.jpg" />
     <None Remove="img\noticia3.jpg" />
     <None Remove="img\notificia1.jpg" />
     <None Remove="img\refresh.png" />
+    <None Remove="img\search %281%29.png" />
     <None Remove="img\search-icon.png" />
     <None Remove="img\search.png" />
+    <None Remove="img\social-media.png" />
     <None Remove="img\twitter.png" />
     <None Remove="img\youtube.png" />
   </ItemGroup>
@@ -33,13 +38,18 @@
     <Resource Include="img\arrow-r.png" />
     <Resource Include="img\edge.png" />
     <Resource Include="img\facebook.png" />
+    <Resource Include="img\help.png" />
     <Resource Include="img\ia.png" />
+    <Resource Include="img\landing-page.png" />
+    <Resource Include="img\news.png" />
     <Resource Include="img\noticia2.jpg" />
     <Resource Include="img\noticia3.jpg" />
     <Resource Include="img\notificia1.jpg" />
     <Resource Include="img\refresh.png" />
+    <Resource Include="img\search (1).png" />
     <Resource Include="img\search-icon.png" />
     <Resource Include="img\search.png" />
+    <Resource Include="img\social-media.png" />
     <Resource Include="img\twitter.png" />
     <Resource Include="img\youtube.png" />
   </ItemGroup>
