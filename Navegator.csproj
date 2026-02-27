@@ -14,6 +14,9 @@
     <None Remove="img\edge.png" />
     <None Remove="img\facebook.png" />
     <None Remove="img\ia.png" />
+    <None Remove="img\noticia2.jpg" />
+    <None Remove="img\noticia3.jpg" />
+    <None Remove="img\notificia1.jpg" />
     <None Remove="img\refresh.png" />
     <None Remove="img\search-icon.png" />
     <None Remove="img\search.png" />
@@ -22,11 +25,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3800.47" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="img\arrow-l.png" />
     <Resource Include="img\arrow-r.png" />
     <Resource Include="img\edge.png" />
     <Resource Include="img\facebook.png" />
     <Resource Include="img\ia.png" />
+    <Resource Include="img\noticia2.jpg" />
+    <Resource Include="img\noticia3.jpg" />
+    <Resource Include="img\notificia1.jpg" />
     <Resource Include="img\refresh.png" />
     <Resource Include="img\search-icon.png" />
     <Resource Include="img\search.png" />

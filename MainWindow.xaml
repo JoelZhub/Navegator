@@ -4,17 +4,33 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Navegator"
+        xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
         mc:Ignorable="d"
-        Title="Navegator" Height="600" Background="White" Width="1200" Icon="/img/edge.png"  >
-
-    <Grid Width="auto" Height="auto" >
+        Title="Navegator" MaxHeight="1200" Background="White"  Width="1200" Icon="/img/edge.png"  >
 
 
-        <Border BorderBrush="#000" Background="#1A1A29"   BorderThickness="0,0,0,0.2" Height="80" VerticalAlignment="Top"  >
-            <StackPanel  Orientation="Horizontal" Height="80" Width="1200" HorizontalAlignment="Center"  VerticalAlignment="Top" >
-                <StackPanel Background="Transparent"  Height="40" Width="150" Orientation="Horizontal"  >
+    <ScrollViewer  VerticalScrollBarVisibility="Auto"  >
 
-                    <Border
+        <ScrollViewer.Resources>
+            <Style TargetType="Thumb">
+                <Setter Property="Background" Value="#6A5ACD"/>
+                <Setter Property="Width" Value="2"/>
+            </Style>
+
+
+            <Style TargetType="ScrollBar">
+                <Setter Property="Width" Value="2"/>
+            </Style>
+        </ScrollViewer.Resources>
+
+        <Grid Width="auto" Height="auto" >
+            <!--header-->
+            <Border  BorderBrush="#000" Background="#1A1A29"   BorderThickness="0,0,0,0.2" MinHeight="80" VerticalAlignment="Top" Grid.ColumnSpan="2"  >
+
+                <StackPanel  Orientation="Horizontal"  MinHeight="80" MaxWidth="1200" HorizontalAlignment="Center"  VerticalAlignment="Top" >
+                    <StackPanel Background="Transparent"  Height="40" Width="150" Orientation="Horizontal"  >
+
+                        <Border
                         CornerRadius="4"
                         BorderBrush="White"
                         BorderThickness="0.5"
@@ -22,12 +38,12 @@
                         Height="20"
                         Margin="20,0,0,0" 
                         >
-                        <Button BorderThickness="0" Padding="2" Background="White" Height="20" Width="20" >
-                            <Image Opacity="0.3" Source="/img/arrow-l.png"  />
-                        </Button>
-                    </Border>
+                            <Button BorderThickness="0" Padding="2" Background="White" Height="20" Width="20" >
+                                <Image Opacity="0.3" Source="/img/arrow-l.png"  />
+                            </Button>
+                        </Border>
 
-                    <Border
+                        <Border
                           CornerRadius="4"
                           BorderBrush="White"
                           BorderThickness="0.5"
@@ -35,12 +51,12 @@
                           Height="20"
                           Margin="20,0,0,0" 
                           >
-                        <Button BorderThickness="0" Padding="2" Background="White" Height="20" Width="20" >
-                            <Image  Opacity="0.3" Source="/img/arrow-r.png"  />
-                        </Button>
-                    </Border>
+                            <Button BorderThickness="0" Padding="2" Background="White" Height="20" Width="20" >
+                                <Image  Opacity="0.3" Source="/img/arrow-r.png"  />
+                            </Button>
+                        </Border>
 
-                    <Border
+                        <Border
                           CornerRadius="4"
                           BorderBrush="White"
                           BorderThickness="0.5"
@@ -48,129 +64,185 @@
                           Height="20"
                           Margin="20,0,0,0" 
                           >
-                        <Button BorderThickness="0" Padding="2" Background="White" Height="20" Width="20"  >
-                            <Image  Source="/img/refresh.png"  />
-                        </Button>
+                            <Button BorderThickness="0" Padding="2" Background="White" Height="20" Width="20"  >
+                                <Image  Source="/img/refresh.png"  />
+                            </Button>
+                        </Border>
+
+                    </StackPanel>
+
+                    <Border CornerRadius="2" Padding="5"  Margin="20,0,0,0"  BorderBrush="White" Background="#3F2F4F"  Height="40" Width="1000" VerticalAlignment="Center" HorizontalAlignment="Center" >
+                        <StackPanel Orientation="Horizontal"   >
+                            <Image  Source="/img/search-icon.png" Height="20" Width="20" />
+                            <TextBox  KeyDown="TextBox_KeyDown"  GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"  Tag="searchUp" BorderThickness="0" HorizontalAlignment="Left" FontSize="14" Padding="10, 6" Background="Transparent" Foreground="White" FontWeight="Normal"  Height="35" Width="1000" Text="Buscar con google o introduzca la url" />
+                        </StackPanel>
+                    </Border>
+
+                </StackPanel>
+            </Border>
+
+
+
+            <!-- contenedor main principal-->
+
+            <StackPanel Name="main" ScrollViewer.CanContentScroll="True" Orientation="Vertical"  MinHeight="900"  MaxWidth="1000"
+                    Background="Transparent" HorizontalAlignment="Center" 
+                    VerticalAlignment="Top" Margin="56,102,0,0" Grid.Column="1"  >
+
+
+                <StackPanel Orientation="Horizontal" Margin="0,50,0,20"  Width="300" HorizontalAlignment="Center"  >
+                    <Image Height="80" Width="80" Source="/img/edge.png" />
+                    <TextBlock Text="Navegator" FontWeight="Bold" FontSize="40" Foreground="Black" Height="55" Width="auto" />
+
+                </StackPanel>
+
+                <!--Barra de bsuqueda del main-->
+                <StackPanel Height="55" Margin="0,10,0,20" 
+                        Orientation="Vertical" HorizontalAlignment="Center" 
+                        VerticalAlignment="Center" >
+
+                    <Border CornerRadius="10"  BorderThickness="0.6" BorderBrush="#000"
+                        Background="White"  Height="50" Width="730" 
+                        VerticalAlignment="Center" HorizontalAlignment="Center" >
+
+                        <StackPanel Orientation="Horizontal" Height="40" Width="auto"  >
+                            <Image Source="/img/search.png" Height="35" Width="40"  />
+
+                            <TextBox  Cursor="" KeyDown="TextBox_KeyDown"  GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"  Tag="searchDown" BorderThickness="0" FontSize="14" Padding="7"
+                                 Background="Transparent" FontWeight="Medium"  Height="36" Width="680" 
+                                 Text="Buscar con google o introduzca la url"/>
+
+                        </StackPanel>
                     </Border>
 
                 </StackPanel>
 
-                <Border CornerRadius="2" Padding="5"  Margin="20,0,0,0"  BorderBrush="White" Background="#3F2F4F"  Height="40" Width="1000" VerticalAlignment="Center" HorizontalAlignment="Center" >
-                    <StackPanel Orientation="Horizontal"   >
-                        <Image  Source="/img/search-icon.png" Height="20" Width="20" />
-                        <TextBox BorderThickness="0" HorizontalAlignment="Left" FontSize="14" Padding="10, 6" Background="Transparent" Foreground="White" FontWeight="Normal"  Height="35" Width="1000" Text="Buscar con google o introduzca la url" />
+                <!--Widgest de redes sociales-->
+
+                <StackPanel Orientation="Horizontal" MaxWidth="700" MinHeight="140" 
+                VerticalAlignment="Top" 
+                HorizontalAlignment="Center"  >
+
+                    <Border 
+                      Background="#4D4D4D" 
+                      Height="100" Width="120"
+                      CornerRadius="12"
+                      Margin="40,0,0,0"
+                      >
+                        <Border Width="80"
+                  Height="70"
+                  Background="White" 
+                  CornerRadius="8"
+                  >
+                            <Image MouseDown="Image_MouseDown" Cursor="Hand" Tag="https://www.facebook.com"  Source="/img/facebook.png" Height="70" Width="70"/>
+                        </Border>
+
+
+                    </Border>
+
+                    <Border 
+                      Background="#4D4D4D" 
+                      Height="100" Width="120"
+                      CornerRadius="12"
+                      Margin="50,0,0,0"
+                      >
+                        <Border Width="80"
+                      Height="70"
+                      Background="White" 
+                      CornerRadius="8"
+                      >
+                            <Image MouseDown="Image_MouseDown" Cursor="Hand"  Tag="https://www.youtube.com"   Source="/img/youtube.png" Height="70" Width="70"/>
+                        </Border>
+
+
+                    </Border>
+
+                    <Border 
+                           Background="#4D4D4D" 
+                           Height="100" Width="120"
+                           CornerRadius="12"
+                           Margin="60,0,0,0"
+          
+                           >
+                        <Border Width="80"
+                           Height="70"
+                           Background="White" 
+                           CornerRadius="8"
+                           >
+                            <Image MouseDown="Image_MouseDown" Cursor="Hand" Tag="https://www.x.com"  Source="/img/twitter.png" Height="70" Width="70"/>
+                        </Border>
+
+
+                    </Border>
+
+                    <Border 
+                            Background="#4D4D4D" 
+                            Height="100" Width="120"
+                            CornerRadius="12"
+                            Margin="70,0,0,0"
+                            >
+                        <Border Width="80"
+                            Height="70"
+                            Background="White" 
+                            CornerRadius="8"
+                            >
+                            <Image MouseDown="Image_MouseDown" Cursor="Hand" Tag="https://www.chatgpt.com" Source="/img/ia.png" Height="70" Width="70"/>
+                        </Border>
+
+                    </Border>
+
+                </StackPanel>
+
+                <!--Wrapper de noticias-->
+
+                <StackPanel Orientation="Vertical"  MaxWidth="1000" Height="auto" VerticalAlignment="Top" HorizontalAlignment="Left" >
+                    <TextBlock FontSize="22" HorizontalAlignment="Left" FontWeight="Medium" Text="Notificas recientes" Height="40" Width="200" VerticalAlignment="Top"  />
+
+                    <!--Widgget-->
+                    <StackPanel  Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="1000" Height="auto" >
+                        <Border  CornerRadius="12" BorderBrush="#000" BorderThickness="0.4"  Width="300" Height="auto" >
+                            <StackPanel   Background="white" Orientation="Vertical" Width="300" Height="auto" >
+                                <Image  VerticalAlignment="Top" Width="300" Height="160" Stretch="Fill"  Opacity="0.7" Source="/img/notificia1.jpg"/>
+                                <TextBlock  Margin="8,0,0,0" Padding="3" HorizontalAlignment="Left"  VerticalAlignment="Top" Foreground="#000" Opacity="0.6" Text="Venezuela" FontSize="11"/>
+                                <TextBlock Margin="8,0,0,0" TextWrapping="Wrap" Padding="3" Text="Captura del diactor Nicolas Maduro" FontWeight="Bold" />
+                                <TextBlock LineHeight="20"  FontSize="12" TextWrapping="Wrap" Margin="6" Height="auto" Text="La captura del expresidente venezolano Nicolás Maduro se produjo el 3 de enero de 2026, cuando fuerzas militares de Estados Unidos realizaron una operación en Caracas que terminó con su detención y traslado a Nueva York para enfrentar cargos federales por narcotráfico y narco-terrorismo. La intervención, anunciada por el gobierno de EE. UU. como un operativo judicial, desató reacciones encontradas en el mundo, 
+                            con celebraciones entre opositores y críticas por violación de soberanía y derechos internacionales."/>
+                            </StackPanel>
+                        </Border>
+
+                        <Border  Margin="40,0,0,0" CornerRadius="12" BorderBrush="#000" BorderThickness="0.4"  Width="300" Height="auto" >
+                            <StackPanel   Background="white" Orientation="Vertical" Width="300" Height="auto" >
+                                <Image  VerticalAlignment="Top" Width="300" Height="160" Stretch="Fill"  Opacity="0.7" Source="/img/noticia2.jpg"/>
+                                <TextBlock Margin="8,0,0,0" Padding="3"   HorizontalAlignment="Left"  VerticalAlignment="Top" Foreground="#000" Opacity="0.6" Text="Presidente Unit States" FontSize="11"/>
+                                <TextBlock Margin="8,0,0,0" TextWrapping="Wrap" Text="Trump enfrenta fuerte criticas tras su discurso del Estado de la Unión 2026" FontWeight="Bold" Padding="3" />
+                                <TextBlock   LineHeight="20" FontSize="12" TextWrapping="Wrap" Margin="6"  Height="auto" Text="La administración del presidente Donald Trump enfrenta un panorama políticamente intenso en Estados Unidos: tras su discurso del Estado de la Unión 2026, marcado por grandes promesas económicas y fuertes mensajes sobre inmigración y seguridad, han surg controvérsias y resistencias tanto internas como externas. Líderes demócratas preparan votos en el Congreso para limitar posibles acciones militares sin aprobación legislativa, mientras que negociaciones con Irán continúan sin acuerdo y tensiones internacionales persisten."/>
+                            </StackPanel>
+                        </Border>
+
+
+                        <Border  Margin="40,0,0,0" CornerRadius="12" BorderBrush="#000" BorderThickness="0.4"  Width="300" Height="auto" >
+                            <StackPanel   Background="white" Orientation="Vertical" Width="300" Height="auto" >
+                                <Image  VerticalAlignment="Top" Width="300" Height="160" Stretch="Fill"  Opacity="0.7" Source="/img/noticia3.jpg"/>
+                                <TextBlock  Margin="8,0,0,0"  Padding="3"  HorizontalAlignment="Left"  VerticalAlignment="Top" Foreground="#000" Opacity="0.6" Text="ITLA" FontSize="11"/>
+                                <TextBlock   Margin="8,0,0,0" TextWrapping="Wrap" Text="Presidente Abinader designa a nuevo rector del ITLA" FontWeight="Bold" Padding="3" />
+                                <TextBlock LineHeight="20"  Margin="6"  Height="auto"   FontSize="12" TextWrapping="Wrap" Text="El presidente Luis Abinader designó al ingeniero Jimmy Rosario Bernard como nuevo rector del Instituto Tecnológico de Las Américas (ITLA) mediante el Decreto núm. 65-26, emitido el 31 de enero de 2026. Rosario Bernard asume el liderazgo de esta institución educativa superior tecnológica buscando fortalecer la formación académica y la actualización en tecnologías emergentes, tras la destitución de su antecesor en un proceso de cambios administrativos."/>
+                            </StackPanel>
+                        </Border>
+
                     </StackPanel>
-                </Border>
-
-            </StackPanel>
-        </Border>
-
-        <StackPanel Orientation="Vertical"  Height="270"  Width="1000"
-                    Background="Transparent" HorizontalAlignment="Center" 
-                    VerticalAlignment="Top" Margin="0,102,0,0"  >
 
 
-            <StackPanel Orientation="Horizontal" Margin="0,50,0,20"  Width="300" HorizontalAlignment="Center"  >
-                <Image Height="80" Width="80" Source="/img/edge.png" />
-                <TextBlock Text="Navegator" FontWeight="Bold" FontSize="40" Foreground="Black" Height="55" Width="auto" />
 
-            </StackPanel>
+                </StackPanel>
 
-            <StackPanel Height="60" Margin="0,10,0,20" 
-                        Orientation="Vertical" HorizontalAlignment="Center" 
-                        VerticalAlignment="Center" >
 
-                <Border CornerRadius="10"  BorderThickness="0.6" BorderBrush="#000"
-                        Background="White"  Height="50" Width="730" 
-                        VerticalAlignment="Center" HorizontalAlignment="Center" >
 
-                    <StackPanel Orientation="Horizontal" Height="40" Width="auto"  >
-                        <Image Source="/img/search.png" Height="35" Width="40"  />
-
-                        <TextBox BorderThickness="0" HorizontalAlignment="Left" FontSize="14" Padding="7"
-                                 Background="Transparent" FontWeight="Medium"  Height="35" Width="550" 
-                                 Text="Buscar con google o introduzca la url" />
-
-                    </StackPanel>
-                </Border>
 
             </StackPanel>
 
 
-        </StackPanel>
-
-        <StackPanel Orientation="Horizontal" Width="700" Height="140" 
-                    Margin="0,313,0,0" VerticalAlignment="Top" 
-                    HorizontalAlignment="Center"  >
-
-            <Border 
-                Background="#4D4D4D" 
-                Height="100" Width="120"
-                CornerRadius="12"
-                Margin="40,0,0,0"
-                >
-                <Border Width="80"
-                        Height="70"
-                        Background="White" 
-                        CornerRadius="8"
-                        >
-                    <Image  Source="/img/facebook.png" Height="70" Width="70"/>
-                </Border>
-
-
-            </Border>
-
-            <Border 
-                Background="#4D4D4D" 
-                Height="100" Width="120"
-                CornerRadius="12"
-                Margin="50,0,0,0"
-                >
-                <Border Width="80"
-                    Height="70"
-                    Background="White" 
-                    CornerRadius="8"
-                    >
-                    <Image  Source="/img/youtube.png" Height="70" Width="70"/>
-                </Border>
-
-
-            </Border>
-
-            <Border 
-             Background="#4D4D4D" 
-             Height="100" Width="120"
-             CornerRadius="12"
-             Margin="60,0,0,0"
-             >
-                <Border Width="80"
-             Height="70"
-             Background="White" 
-             CornerRadius="8"
-             >
-                    <Image  Source="/img/twitter.png" Height="70" Width="70"/>
-                </Border>
-
-
-            </Border>
-
-            <Border 
-              Background="#4D4D4D" 
-              Height="100" Width="120"
-              CornerRadius="12"
-              Margin="70,0,0,0"
-              >
-                <Border Width="80"
-              Height="70"
-              Background="White" 
-              CornerRadius="8"
-              >
-                    <Image  Source="/img/ia.png" Height="70" Width="70"/>
-                </Border>
-
-            </Border>
-
-        </StackPanel>
-
-    </Grid>
+            <wv2:WebView2 Margin="0,75,0,0" Visibility="Hidden" Height="auto" x:Name="webView"/>
+            
+        </Grid>
+    </ScrollViewer>
 </Window>
