@@ -15,6 +15,7 @@
     <None Remove="img\facebook.png" />
     <None Remove="img\ia.png" />
     <None Remove="img\refresh.png" />
+    <None Remove="img\search-icon.png" />
     <None Remove="img\search.png" />
     <None Remove="img\twitter.png" />
     <None Remove="img\youtube.png" />
@@ -27,6 +28,7 @@
     <Resource Include="img\facebook.png" />
     <Resource Include="img\ia.png" />
     <Resource Include="img\refresh.png" />
+    <Resource Include="img\search-icon.png" />
     <Resource Include="img\search.png" />
     <Resource Include="img\twitter.png" />
     <Resource Include="img\youtube.png" />

@@ -5,60 +5,103 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Navegator"
         mc:Ignorable="d"
-        Title="NavegatorItlaByJoel" Height="600" Width="1200" Icon="/img/edge.png"  >
+        Title="Navegator" Height="600" Background="White" Width="1200" Icon="/img/edge.png"  >
 
     <Grid Width="auto" Height="auto" >
 
-        <Border BorderBrush="#000" BorderThickness="0,0,0,0.2" Height="80" VerticalAlignment="Top" >
+
+        <Border BorderBrush="#000" Background="#1A1A29"   BorderThickness="0,0,0,0.2" Height="80" VerticalAlignment="Top"  >
             <StackPanel  Orientation="Horizontal" Height="80" Width="1200" HorizontalAlignment="Center"  VerticalAlignment="Top" >
+                <StackPanel Background="Transparent"  Height="40" Width="150" Orientation="Horizontal"  >
 
-                <StackPanel Background="White" Margin="20,0,0,0" Height="40" Width="150" Orientation="Horizontal"  >
-
-                    <Button BorderThickness="0" Height="20" Width="20" Margin="20,0,0,0" Background="Transparent" Click="OnClick">
-                        <Image Source="/img/arrow-l.png"  />
-                    </Button>
-
-                    <Button BorderThickness="0" Height="20" Width="20" Background="Transparent" Margin="20,0,0,0" Click="OnClick" >
-                            <Image Source="/img/arrow-r.png" />
+                    <Border
+                        CornerRadius="4"
+                        BorderBrush="White"
+                        BorderThickness="0.5"
+                        Width="20"
+                        Height="20"
+                        Margin="20,0,0,0" 
+                        >
+                        <Button BorderThickness="0" Padding="2" Background="White" Height="20" Width="20" >
+                            <Image Opacity="0.3" Source="/img/arrow-l.png"  />
                         </Button>
+                    </Border>
 
-                    <Button  BorderThickness="0" Height="20" Width="20" Margin="20,0,0,0" Background="Transparent" Click="OnClick" >
-                        <Image Source="/img/refresh.png"  />
-                    </Button>  
-                    
+                    <Border
+                          CornerRadius="4"
+                          BorderBrush="White"
+                          BorderThickness="0.5"
+                          Width="20"
+                          Height="20"
+                          Margin="20,0,0,0" 
+                          >
+                        <Button BorderThickness="0" Padding="2" Background="White" Height="20" Width="20" >
+                            <Image  Opacity="0.3" Source="/img/arrow-r.png"  />
+                        </Button>
+                    </Border>
+
+                    <Border
+                          CornerRadius="4"
+                          BorderBrush="White"
+                          BorderThickness="0.5"
+                          Width="20"
+                          Height="20"
+                          Margin="20,0,0,0" 
+                          >
+                        <Button BorderThickness="0" Padding="2" Background="White" Height="20" Width="20"  >
+                            <Image  Source="/img/refresh.png"  />
+                        </Button>
+                    </Border>
+
                 </StackPanel>
 
-                <Border CornerRadius="2" BorderThickness="0.5" Margin="20,0,0,0"  BorderBrush="#000" Background="White"  Height="40" Width="1000" VerticalAlignment="Center" HorizontalAlignment="Center" >
-                <TextBox BorderThickness="0" HorizontalAlignment="Left" FontSize="14" Padding="10, 6" Background="Transparent" FontWeight="Normal"  Height="35" Width="1000" Text="Buscar con google o introduzca la url" />
-            </Border>
-
-            </StackPanel>
-        </Border>
-
-        <StackPanel Orientation="Vertical"  Height="270"  Width="1000" Background="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,90"  >
-            <StackPanel Orientation="Horizontal" Margin="0,50,0,20"  Width="300" HorizontalAlignment="Center"  >
-                <Image Height="80" Width="80" Source="/img/edge.png" />
-                   <TextBlock Text="Navegator" FontWeight="Bold" FontSize="40" Foreground="Black" Height="55" Width="auto" />
-  
-                    </StackPanel>
-            <StackPanel Height="60" Margin="0,10,0,20" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" >
-
-                
-                <Border CornerRadius="10"  BorderThickness="0.6" BorderBrush="#000" Background="White"  Height="50" Width="730" VerticalAlignment="Center" HorizontalAlignment="Center" >
-                    <StackPanel Orientation="Horizontal" Height="40" Width="auto"  >
-                        <Image Source="/img/search.png" Height="35" Width="40"  />
-                        <TextBox BorderThickness="0" HorizontalAlignment="Left" FontSize="14" Padding="7"
-                                 Background="Transparent" FontWeight="Medium"  Height="35" Width="550" 
-                                 Text="Buscar con google o introduzca la url" />
+                <Border CornerRadius="2" Padding="5"  Margin="20,0,0,0"  BorderBrush="White" Background="#3F2F4F"  Height="40" Width="1000" VerticalAlignment="Center" HorizontalAlignment="Center" >
+                    <StackPanel Orientation="Horizontal"   >
+                        <Image  Source="/img/search-icon.png" Height="20" Width="20" />
+                        <TextBox BorderThickness="0" HorizontalAlignment="Left" FontSize="14" Padding="10, 6" Background="Transparent" Foreground="White" FontWeight="Normal"  Height="35" Width="1000" Text="Buscar con google o introduzca la url" />
                     </StackPanel>
                 </Border>
 
             </StackPanel>
-            
-            
+        </Border>
+
+        <StackPanel Orientation="Vertical"  Height="270"  Width="1000"
+                    Background="Transparent" HorizontalAlignment="Center" 
+                    VerticalAlignment="Top" Margin="0,102,0,0"  >
+
+
+            <StackPanel Orientation="Horizontal" Margin="0,50,0,20"  Width="300" HorizontalAlignment="Center"  >
+                <Image Height="80" Width="80" Source="/img/edge.png" />
+                <TextBlock Text="Navegator" FontWeight="Bold" FontSize="40" Foreground="Black" Height="55" Width="auto" />
+
+            </StackPanel>
+
+            <StackPanel Height="60" Margin="0,10,0,20" 
+                        Orientation="Vertical" HorizontalAlignment="Center" 
+                        VerticalAlignment="Center" >
+
+                <Border CornerRadius="10"  BorderThickness="0.6" BorderBrush="#000"
+                        Background="White"  Height="50" Width="730" 
+                        VerticalAlignment="Center" HorizontalAlignment="Center" >
+
+                    <StackPanel Orientation="Horizontal" Height="40" Width="auto"  >
+                        <Image Source="/img/search.png" Height="35" Width="40"  />
+
+                        <TextBox BorderThickness="0" HorizontalAlignment="Left" FontSize="14" Padding="7"
+                                 Background="Transparent" FontWeight="Medium"  Height="35" Width="550" 
+                                 Text="Buscar con google o introduzca la url" />
+
+                    </StackPanel>
+                </Border>
+
+            </StackPanel>
+
+
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Width="800" Height="140" Margin="40,280,1,40" VerticalAlignment="Center" HorizontalAlignment="Center" >
+        <StackPanel Orientation="Horizontal" Width="700" Height="140" 
+                    Margin="0,313,0,0" VerticalAlignment="Top" 
+                    HorizontalAlignment="Center"  >
 
             <Border 
                 Background="#4D4D4D" 
@@ -73,8 +116,8 @@
                         >
                     <Image  Source="/img/facebook.png" Height="70" Width="70"/>
                 </Border>
-                
-         
+
+
             </Border>
 
             <Border 
@@ -83,13 +126,13 @@
                 CornerRadius="12"
                 Margin="50,0,0,0"
                 >
-                        <Border Width="80"
+                <Border Width="80"
                     Height="70"
                     Background="White" 
                     CornerRadius="8"
                     >
-                           <Image  Source="/img/youtube.png" Height="70" Width="70"/>
-                      </Border>
+                    <Image  Source="/img/youtube.png" Height="70" Width="70"/>
+                </Border>
 
 
             </Border>
@@ -100,23 +143,23 @@
              CornerRadius="12"
              Margin="60,0,0,0"
              >
-            <Border Width="80"
+                <Border Width="80"
              Height="70"
              Background="White" 
              CornerRadius="8"
              >
-                     <Image  Source="/img/twitter.png" Height="70" Width="70"/>
-                    </Border>
-
-
+                    <Image  Source="/img/twitter.png" Height="70" Width="70"/>
                 </Border>
 
+
+            </Border>
+
             <Border 
-          Background="#4D4D4D" 
-          Height="100" Width="120"
-          CornerRadius="12"
-          Margin="70,0,0,0"
-          >
+              Background="#4D4D4D" 
+              Height="100" Width="120"
+              CornerRadius="12"
+              Margin="70,0,0,0"
+              >
                 <Border Width="80"
               Height="70"
               Background="White" 
@@ -125,12 +168,9 @@
                     <Image  Source="/img/ia.png" Height="70" Width="70"/>
                 </Border>
 
-
             </Border>
 
-
         </StackPanel>
-        
-        
+
     </Grid>
 </Window>
